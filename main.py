@@ -6,7 +6,9 @@ from sympy import Matrix
 
 from helper_funcs import calc_edge_lengths, plot_2d, plot_3d
 
-from config_c import d, V, E
+## CHANGE THIS FOR DIFFERENT CASES
+# from config_c import d, V, E
+from config_a import d, V, E
 
 
 # Build rigidity matrix
@@ -14,7 +16,6 @@ def build_R_mat(E, V, d):
     R = np.zeros((E.shape[0], d * V.shape[0]))
 
     for row, e in enumerate(E):
-
         i = e[0]
         j = e[1]
 
@@ -83,12 +84,17 @@ def unconnected_node_pairs():
         # if sum is V-1, it is connected to all nodes
         if adj_cnt[i] < len(V) - 1:
             for n in not_adj_nodes:
-
                 if n > i:
                     non_member = np.array([i + 1, n + 1]).reshape(1, 2)
-                    unconnected_nodes = np.append(unconnected_nodes, non_member, axis=0)
+                    unconnected_nodes = np.append(
+                        unconnected_nodes, non_member, axis=0
+                    )
                 else:
-                    print("node {} is already listed for node {}".format(n + 1, i + 1))
+                    print(
+                        "node {} is already listed for node {}".format(
+                            n + 1, i + 1
+                        )
+                    )
         else:
             print("node {} is fully connected".format(i + 1))
 
@@ -140,11 +146,12 @@ print("\nplot motion")
 if d == 2:
     fig, axs = plt.subplots(3, 3, figsize=(10, 10))
 elif d == 3:
-    fig, axs = plt.subplots(3, 3, figsize=(10, 10), subplot_kw=dict(projection="3d"))
+    fig, axs = plt.subplots(
+        3, 3, figsize=(10, 10), subplot_kw=dict(projection="3d")
+    )
 
 
 for t, ax in enumerate(axs.flatten()):
-
     if t >= R_ker.shape[1]:
         break
 
