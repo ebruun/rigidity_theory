@@ -8,7 +8,7 @@ from helper_funcs import calc_edge_lengths, plot_2d, plot_3d
 
 ## CHANGE THIS FOR DIFFERENT CASES
 # from config_c import d, V, E
-from config_a import d, V, E
+from config_d import d, V, E
 
 
 # Build rigidity matrix
